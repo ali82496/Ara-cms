@@ -2,6 +2,10 @@ body {
   font-size: .875rem;
 }
 
+button, object, embed, * { 
+  outline: 0;
+}
+
 .feather {
   width: 16px;
   height: 16px;
@@ -120,4 +124,27 @@ body {
 
 .bg-lighter {
   background-color: #e6ecf0 !important;
+}
+
+.card {
+  border-radius: 7px !important;
+}
+
+.list-group .list-group-item {
+  background-color: #343a40 !important;
+  border-top: 1px solid #343a40 !important;
+  border-left-color: #343a40 !important;
+  border-right-color: #343a40 !important;
+  color: #f0f0f0;
+}
+
+.list-group .list-group-item:hover {
+  background-color: #46494d !important;
+  color: #fff;
+}
+
+.list-group .list-group-item.active {
+  background-color: #7b78ff !important;
+  color: #fff;
+  border: none;
 }

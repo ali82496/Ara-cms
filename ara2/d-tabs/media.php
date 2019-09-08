@@ -7,13 +7,17 @@
     }
   }
 </style>
-<h1>Media</h1>
-<br>
-<div class="card p-3 rounded" style="width: 100%;">
+<div class="container-fluid">
+  <h1 class="float-left">Media</h1>
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModalCenter" style="width: 79px;">
+  <button type="button" class="btn btn-outline-primary float-right" data-toggle="modal" data-target="#exampleModalCenter" style="width: 79px;">
     Upload
   </button>
+  <br>
+</div>
+
+<br>
+<div class="card p-3" style="width: 100%;">
   <!--  upload modal start  -->
   <!-- Modal -->
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

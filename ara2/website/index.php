@@ -3,7 +3,7 @@
     include('../config/db_connect.php');
 
     //write query for all posts
-    $sql = 'SELECT title, content, id FROM posts ORDER BY created_at';
+    $sql = 'SELECT id, title, content, author, featured_image, created_at FROM posts ORDER BY created_at';
     
     //make query and get resualt
     $result = mysqli_query($conn, $sql);
@@ -26,6 +26,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ara</title>
     <link rel="stylesheet" href="blog.css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One&display=swap" rel="stylesheet"> 
     <script src="https://kit.fontawesome.com/3a8222ebcb.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -38,58 +39,85 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
     <style>
-        .ara-bg-color{
-            background-color: #7b78ff;
+
+        @font-face {
+            font-family: Vazir;
+            src: url('fonts/Vazir-Black.eot');
+            src: url('fonts/Vazir-Black.eot?#iefix') format('embedded-opentype'),
+                 url('fonts/Vazir-Black.woff2') format('woff2'),
+                 url('fonts/Vazir-Black.woff') format('woff'),
+                 url('fonts/Vazir-Black.ttf') format('truetype');
+            font-weight: 900;
+            font-style: normal;
         }
 
-        .ara-color{
-            color: #fff;
+        .bg-lighter {
+            background-color: #e6ecf0 !important;
         }
 
-        .callout{
-            border-left: 5px solid #7b78ff;
-            width: 95%;
-            margin: auto;
-            padding: 5px;
-            border-radius: 2px;
-            background-color: #f0f0f0;
+        .navbar-brand {
+            color: #fff !important;
         }
 
-        h1{
-            padding: 5px;
+        .card {
+            border-radius: 10px !important;
+            font-family: Vazir;
         }
+
+        ul {
+            list-style: none;
+        }
+        
     </style>
 </head>
 
-<body>
-    <!-- Image and text -->
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-            <img src="../ara.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-            ara
-        </a>
-    </nav>
-    <div class="jumbotron jumbotron-fluid ara-bg-color ara-color">
+<body class="bg-lighter">   
+     <!-- Image and text -->
+    <nav class="navbar navbar-primary bg-primary">
         <div class="container">
-            <h1 class="display-4">Ara</h1>
-            <p class="lead">Powerful but yet simple</p>
+            <a class="navbar-brand" href="#">
+                <img src="ara-alt.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+                Ara
+            </a>
         </div>
-    </div>
-    <div class="callout bd-callout-info"> 
-        <h3 id="conveying-meaning-to-assistive-technologies">Notice</h3>
-        <p>Ara is under development but you can youse it....</p>
-    </div> 
-    <br><br>
+    </nav>
     <div class="container">
         <div class="row">
-            <div class=" col col-sm-3"><h1 class="fas fa-bolt" style="color: #7b78ff;"> Fast and Easy</h1></div><br>
-            <div class="col col-sm-3"><h1 class="fas fa-box-open" style="color: #f47267;"> Extendable</h1></div><br>
-            <div class="col col-sm-3"><h1 class="fas fa-fill-drip" style="color: orange;"> Costomizable</h1></div><br>
+            <div class="col-md-9 mt-4 mb-4">
+                <?php foreach($posts as $post){ ?>
+                    <div class="card mt-2">
+                        <div class="card-title h4 text-right p-4"><?php echo htmlspecialchars($post['title']); ?></div>
+                        <div class="card-info text-right p-2"><?php echo htmlspecialchars($post['created_at']); ?></div>
+                        <div class="card-img"><img src="../media/<?php echo htmlspecialchars($post['featured_image']); ?>" alt="" width="100%"></div>
+                        <div class="card-description text-right p-2"><?php echo htmlspecialchars($post['content']); ?></div>
+                        <hr class="my-1 mb-1">
+                        <div class="card-tools p-2">ادامه مطلب</div>
+                    </div>
+                <?php } ?>
+            </div>
+            <div class="col-md-3 mt-4 sticky-top">
+                <div class="card mt-2 pt-2 pb-2">
+                    <div class="card-title text-right pr-2">نوشته های اخیر</div>
+                    <hr class="my-1 mb-1" width="90%">
+                    <ul>
+                        <?php foreach($posts as $post){ ?>
+                            <li class="text-right pr-2"><?php echo htmlspecialchars($post['title']); ?></li>
+                        <?php } ?>
+                    </ul>
+                </div>
+                <div class="card mt-2 pt-2 pb-2">
+                    <div class="card-title text-right pr-2">تگ ها</div>
+                    <hr class="my-1 mb-1" width="90%">
+                    <ul>
+                        <li class="text-right pr-2"> آزادی</li>
+                        <li class="text-right pr-2"> زندگی من</li>
+                        <li class="text-right pr-2"> من امیدوارم</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <hr>
-        <h1 class="fas fa-cog fa-spin" style="color: <?php printf( "#%06X\n", mt_rand( 0, 0xFFFFFF )); ?>;"></h1><h1>But yet powerful</h1>
-    </div>
+    </div>    
 </body>
-
 </html>
