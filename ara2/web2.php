@@ -27,18 +27,17 @@
     <link rel="stylesheet" type="text/css" href="humming-bird-r.css">
   </head>
   <body>
-	<!-- 1 -->
     <div class="grid-header-nav-aside-section-aside-footer">
       <header>
-        <!-- 2 -->
+        <!-- 1 -->
         <h1>lorem ipsum</h1>
       </header>
       <nav class="sticky-up" style="background-color:#fff;">
           <h3 class="text">Humming bird</h3>
-          <!-- 3 -->
+          <!-- 2 -->
       </nav>
       <aside>
-        <!-- 4 -->
+        <!-- 3 -->
         <div class="card" style="width: 98%;">
           <p class="text">
           <ul class="aside-items">
@@ -50,7 +49,7 @@
         </div>
       </aside>
       <section>
-        <!-- 5 -->
+        <!-- 4 -->
         <?php foreach($posts as $post){ ?>
 
           <div class="card rounded-img" style="width: 98%;">
@@ -62,7 +61,7 @@
         <?php } ?>
       </section>
       <div class="aside2">
-        <!-- 6 -->
+        <!-- 5 -->
         <div class="card" style="width: 98%;">
           <p class="text">
           <ul class="aside-items">
@@ -74,7 +73,7 @@
         </div>
       </div>
       <footer style="background-color: #fff; height: 250px;">
-        <!-- 7 -->
+        <!-- 6 -->
         <p class="text">
           footer
         </p>
