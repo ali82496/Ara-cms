@@ -1,7 +1,6 @@
 <?php
 
     //nav area
-    session_start();
     $dir_extention_files = "extention/extention-dir";
 
     // Sort in ascending order - this is default

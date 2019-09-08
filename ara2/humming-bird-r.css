@@ -12,6 +12,9 @@
   --second-padding: 5px;
   --main-background-color: #e6ece6;
   --second-background-color: #ffffff;
+  /* just for ara --start*/
+  --theme1: midnightblue;
+  /* just for ara --end*/
 }
 
 body {
@@ -23,7 +26,7 @@ body {
 .card {
   background-color: var(--second-background-color);
   border-radius: var(--border-radius);
-  margin: var(--margin);
+  /*margin: var(--margin);  just for ara */
   float: left;
   overflow: hidden;
 }
@@ -681,4 +684,18 @@ input[type=reset] {
   border: 1px solid #ccc;
   border-top: none;
 } 
+
+.card
+{
+  padding: 10px;
+}
+
+.theme
+{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 5px;
+  float: left;
+}
 /* Ara tabs experimental --end */
