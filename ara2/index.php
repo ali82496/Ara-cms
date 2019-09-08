@@ -1,163 +1,164 @@
-
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Ara</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>index2</title>
     <link rel="stylesheet" href="humming-bird-r.css">
-    <script src="https://kit.fontawesome.com/3a8222ebcb.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/3a8222ebcb.js"></script>
     <script>
-      // Ara extention tabs
-        function openExtention(evt, ExtentionName) {
+        $(document).ready(function(){
+            $(".tabcontent").hide();
+
+            $(".theme0").click(function(){
+              $(".tab").css({"background-color": "#1f1f2e", "border": "#1f1f2e" });
+              $(".tab button").css("background-color", "#0066f");
+              $(".tab button:hover").css("background-color", "#1f78fd");
+              $(".tab button:active").css("background-color", "#0066ff");
+            });
+
+            $(".theme1").click(function(){
+              $(".tab").css("background-color", "coral");
+            });
+
+            $(".theme2").click(function(){
+              $(".tab").css("background-color", "#6B5B95");
+            });
+
+            $(".theme3").click(function(){
+              $(".tab").css("background-color", "#E94B3C");
+            });
+
+            $(".theme4").click(function(){
+              $(".tab").css("background-color", "#9F9C99");
+            });
+
+            $(".theme5").click(function(){
+              $(".tab").css("background-color", "#45B8AC");
+            });
+        });
+    </script>
+    <style>* {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%;
+      font-family: Verdana, sans-serif;
+    }
+
+
+    body {
+      margin: 0px;
+    }
+
+    /* Style the tab */
+    .tab {
+      float: left;
+      border: 1px solid #fff;
+      background-color: #fff;
+      width: 4%;
+      height: 100%;
+    }
+
+    /* Style the buttons that are used to open the tab content */
+    .tab button {
+      display: block;
+      background-color: inherit;
+      color: black;
+      padding: 18px 16px;
+      width: 100%;
+      border: none;
+      outline: none;
+      text-align: left;
+      cursor: pointer;
+      transition: 0.3s;
+      cursor: default;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+      background-color: #f0f0f0;
+      color: #554fd8;
+    }
+
+    .tab button:hover::-moz-focus-inner {
+      border: 0;
+    }
+
+    /* Create an active/current "tab button" class */
+    .tab button.active {
+      background-color: #e6e6e6;
+      color: #554fd8;
+      border-left: 5px solid #554fd8;
+    }
+
+    .tab button.active::-moz-focus-inner {
+      border: 0;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+      float: left;
+      padding: 0px 12px;
+      border: 1px solid #ccc;
+      width: 96%;
+      border-left: none;
+      height: 100%;
+    }
+
+    </style>
+    <script>
+        function opentab(evt, tabName) {
         // Declare all variables
         var i, tabcontent, tablinks;
 
         // Get all elements with class="tabcontent" and hide them
         tabcontent = document.getElementsByClassName("tabcontent");
         for (i = 0; i < tabcontent.length; i++) {
-          tabcontent[i].style.display = "none";
+            tabcontent[i].style.display = "none";
         }
 
         // Get all elements with class="tablinks" and remove the class "active"
         tablinks = document.getElementsByClassName("tablinks");
         for (i = 0; i < tablinks.length; i++) {
-          tablinks[i].className = tablinks[i].className.replace(" active", "");
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
         }
 
-        // Show the current tab, and add an "active" class to the button that opened the tab
-        document.getElementById(ExtentionName).style.display = "block";
+        // Show the current tab, and add an "active" class to the link that opened the tab
+        document.getElementById(tabName).style.display = "block";
         evt.currentTarget.className += " active";
-      }
+        } 
     </script>
-    <script>
-      $(document).ready(function(){
+</head>
+<body>
+    <div class="tab">
+        <button class="tablinks" onclick="opentab(event, 'dashboard')"><i class="fas fa-bars"></i></button>
+        <button class="tablinks" onclick="opentab(event, 'dashboard')"><i class="fas fa-tachometer-alt"></i></button>
+        <button class="tablinks" onclick="opentab(event, 'post-manager')"><i class="fas fa-plus"></i></button>
+        <button class="tablinks" onclick="opentab(event, 'media-manager')"><i class="fas fa-photo-video"></i></button>
+        <button class="tablinks" onclick="opentab(event, 'file-manager')"><i class="fas fa-folder"></i></button>
+        <button class="tablinks" onclick="opentab(event, 'store-manager')"><i class="fas fa-store-alt"></i></button>
+        <button class="tablinks" onclick="opentab(event, 'settings')"><i class="fas fa-cog"></i></button>
+        <?php 
+            $dir_extention_files = "extention/extention-dir";
 
-        $(".grid-dashboard-items").fadeIn();
-        $(".theme-manager-items").fadeOut();
-        $(".store-manager-items").fadeOut();
-        $(".file-manager-items").fadeOut();
-        $(".media-manager-items").fadeOut();
-        $(".extention-manager-items").fadeOut();
-        $(".compile-manager-items").fadeOut();
-        $(".post-manager-items").fadeOut();
+            // Sort in ascending order - this is default
+            $x = scandir($dir_extention_files);
+            $x = array_diff($x, array('.', '..'));
+            foreach($x as $x){
+                echo "<button class='tablinks' onclick='opentab(event, ".'"'.$x.'"'.")'><i class='fas fa-box-open'></i></button>";
+            } 
+        ?>
+    </div>
 
-        $(".file-manager").click(function(){
-          $(".grid-dashboard-items").fadeOut();
-          $(".theme-manager-items").fadeOut();
-          $(".store-manager-items").fadeOut();
-          $(".media-manager-items").fadeOut();
-          $(".post-manager-items").fadeOut();
-          $(".extention-manager-items").fadeOut();
-          $(".compile-manager-items").fadeOut();
-          $(".file-manager-items").fadeIn();
-        });
-        
-        $(".dashboard").click(function(){
-          $(".file-manager-items").fadeOut();
-          $(".theme-manager-items").fadeOut();
-          $(".store-manager-items").fadeOut();
-          $(".media-manager-items").fadeOut();
-          $(".post-manager-items").fadeOut();
-          $(".extention-manager-items").fadeOut();
-          $(".compile-manager-items").fadeOut();
-          $(".grid-dashboard-items").fadeIn();
-        });
-
-        $(".theme-manager").click(function(){
-          $(".grid-dashboard-items").fadeOut();
-          $(".file-manager-items").fadeOut();
-          $(".store-manager-items").fadeOut();
-          $(".media-manager-items").fadeOut();
-          $(".post-manager-items").fadeOut();
-          $(".extention-manager-items").fadeOut();
-          $(".compile-manager-items").fadeOut();
-          $(".theme-manager-items").fadeIn();
-        });
-
-        $(".store-manager").click(function(){
-          $(".grid-dashboard-items").fadeOut();
-          $(".file-manager-items").fadeOut();
-          $(".theme-manager-items").fadeOut();
-          $(".media-manager-items").fadeOut();
-          $(".post-manager-items").fadeOut();
-          $(".extention-manager-items").fadeOut();
-          $(".compile-manager-items").fadeOut();
-          $(".store-manager-items").fadeIn();
-        });
-
-        $(".media-manager").click(function(){
-          $(".grid-dashboard-items").fadeOut();
-          $(".file-manager-items").fadeOut();
-          $(".theme-manager-items").fadeOut();
-          $(".store-manager-items").fadeOut();
-          $(".post-manager-items").fadeOut();
-          $(".extention-manager-items").fadeOut();
-          $(".compile-manager-items").fadeOut();
-          $(".media-manager-items").fadeIn();
-        });
-
-        $(".post-manager").click(function(){
-          $(".grid-dashboard-items").fadeOut();
-          $(".file-manager-items").fadeOut();
-          $(".theme-manager-items").fadeOut();
-          $(".store-manager-items").fadeOut();
-          $(".media-manager-items").fadeOut();
-          $(".extention-manager-items").fadeOut();
-          $(".compile-manager-items").fadeOut();
-          $(".post-manager-items").fadeIn();
-        });
-
-        $(".extention-manager").click(function(){
-          $(".grid-dashboard-items").fadeOut();
-          $(".file-manager-items").fadeOut();
-          $(".theme-manager-items").fadeOut();
-          $(".store-manager-items").fadeOut();
-          $(".media-manager-items").fadeOut();
-          $(".post-manager-items").fadeOut();
-          $(".compile-manager-items").fadeOut();
-          $(".extention-manager-items").fadeIn();
-        });
-
-        $(".compile-manager").click(function(){
-          $(".grid-dashboard-items").fadeOut();
-          $(".file-manager-items").fadeOut();
-          $(".theme-manager-items").fadeOut();
-          $(".store-manager-items").fadeOut();
-          $(".media-manager-items").fadeOut();
-          $(".post-manager-items").fadeOut();
-          $(".extention-manager-items").fadeOut();
-          $(".compile-manager-items").fadeIn();
-        });
-
-
-        $(".new-folder").click(function(){
-          $(".file-process").load("AraNewDirectory.php");
-        });
-
-        $(".new-theme").click(function(){
-          $(".theme-process").load("Downloader.php");
-        });
-      });
-    </script>
-  </head>
-  <body>
-    <div class="grid-panel">
-      <div class="panel-aside" style="background-color: #1f1f2e; color: white;">
-        <ul class="aside-items element-ul">
-          <li class="dashboard"><i class="fa fa-dashboard"></i>Dashboard</li>
-          <li class="post-manager"><i class="fa fa-plus"></i>New</li>
-          <li class="media-manager"><i class="fa fa-photo-video"></i>Media</li>
-          <li class="file-manager"><i class="fa fa-folder"></i>Files</li>
-          <li class="theme-manager"><i class="fa fa-brush"></i>Theme</li>
-          <li class="store-manager"><i class="fa fa-store-alt"></i>Store</li>
-          <li class="extention-manager"><i class="fa fa-box-open"></i>Extentions</li>
-          <li class="compile-manager"><i class="fa fa-file-export"></i>Compile</li>
-        </ul>
-      </div>
-      <div class="panel">
-        <div class="grid-dashboard-items">
-          <div class="card" style="width: 95%;">
+    <div id="dashboard" class="tabcontent">
+        <h1>Dashboard</h1>
+        <br>
+        <div class="card" style="width: 100%;">
           <?php
             $web_dir = "website";
             if(is_dir($web_dir))
@@ -178,63 +179,20 @@
           ?> 
           <p></p>
           </div>
-          <div class="card" style="width: 29%;">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </div>
-          <div class="card" style="width: 29%;">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </div>
-          <div class="card" style="width: 29%;">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </div>
-          <div class="card" style="width: 45.5%;">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </div>
-          <div class="card" style="width: 45.5%;">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </div>
-        </div>
-        <div class="file-manager-items element">
-          <div class="card" style="width: 95%;">
-          <p class="files-process">Files</p>
-          <form action="AraNewDirectory.php" method="post">
-            <input type="text" name="newfoldername"><br>
-            <input type="submit" class="new-folder" value= "New Folder" name= "newfolder">
-          </form>
-          <hr>
-          <?php
-            $dir_files = ".";
-            // Sort in ascending orderead-liner - this is default
-            $a = scandir($dir_files);
-            $a = array_diff($a, array('.', '..'));
-            foreach($a as $a){
-              echo "<div class=".'card-reverse-1'.">".'<p class= "text">'.$a."</p>"."</div>";   
-            } 
-          ?>
-          </div>
-        </div>
-        <div class="theme-manager-items element">
-          <div class="card" style="width: 95%;">
-          <p class="theme-process">Files</p>
-          <input type="button" class="new-theme" value= "New theme">
-          </div>
-        </div>
-        <div class="store-manager-items element">
-          <div class="card" style="width: 95%;">
-          <?php
-            $dir_themes = "themes";
-    
-            // Sort in ascending order - this is default
-            $b = scandir($dir_themes);
-            $b = array_diff($b, array('.', '..'));
-            foreach($b as $b){
-              echo "<div class=".'card-reverse-1'.">".'<img src="themes/'.$b.'/bitmap.png'.'" width="100%">'.'<p class="text">'.$b.'</p>'."</div>";   
-            } 
-          ?>
-          </div>
-        </div>
-        <div class="media-manager-items element">
-          <div class="card" style="width: 98%;">
+    </div>
+
+    <div id="post-manager" class="tabcontent">
+      <h1>New</h1>
+      <br>
+      <div class="card" style="width: 100%">
+        <?php include('extention/extention-dir/print/print.php') ?>
+      </div>
+    </div>
+
+    <div id="media-manager" class="tabcontent">
+        <h1>Media</h1>
+        <br>
+        <div class="card" style="width: 100%;">
           <form action="AraMediaUpload.php" method="post" enctype="multipart/form-data">
             Select image to upload:
           <input type="file" name="fileToUpload" id="fileToUpload">
@@ -251,81 +209,76 @@
             } 
           ?>
           </div>
-        </div>
-        <div class="post-manager-items element">
-          <?php 
-          if(isset($_POST['submitme'])){
-            include('config/db_connect.php');
-            $title = mysqli_real_escape_string($conn, $_POST['new-post-title']);
-            $author = mysqli_real_escape_string($conn, $_POST['new-post-author']);
-            $content = mysqli_real_escape_string($conn, $_POST['new-post-content']);
-            $sql = "INSERT INTO posts(title,author,content) VALUES ('$title', '$author', '$content')";
-            //save to db and check
-            if(mysqli_query($conn, $sql)){
-              //success
-              header('location: index.php');//redirect to the index page
-            }else{
-              //error
-              echo 'query error: ' . mysqli_error($conn);
-            }
-          }
-          ?>
-          <form action="index.php" method="POST">
-            <label for="" class="margin">Title : </label>
-            <input type="text" name="new-post-title" id="" class="margin" style="width: 98%;">
-            <label for="" class="margin">Author : </label>
-            <input type="text" name="new-post-author" id="" class="margin" style="width: 98%;">
-            <label for="" class="margin">Content : </label>
-            <textarea name="new-post-content" rows="10" cols="30" class="textarea" style="width: 98%;"></textarea> 
-            <input type = "submit" value="submit" name="submitme">
-          </form>
-        </div>
-        <div class="extention-manager-items element">
-        
-            <!-- Tab links -->
-            <div class="tab">
-              <?php 
-                $dir_extention_files = "extention/extention-dir";
-
-                // Sort in ascending order - this is default
-                $x = scandir($dir_extention_files);
-                $x = array_diff($x, array('.', '..'));
-                foreach($x as $x){
-                  echo "<button class='tablinks' onclick='openExtention(event, ".'"'.$x.'"'.")'>".$x."</button>";
-                } 
-              ?>
-            </div>
-
-            <!-- Tab content -->
-            <?php 
-                $dir_extention_files = "extention/extention-dir";
-
-                // Sort in ascending order - this is default
-                $x = scandir($dir_extention_files);
-                $x = array_diff($x, array('.', '..'));
-                foreach($x as $x){
-                  echo '<div id="'.$x.'" class="tabcontent">';
-                  echo '<h3>'.$x.'</h3>';
-                  include ("extention/extention-dir/".$x."/".$x."_settings.php");
-                  echo '</div>';
-                } 
-              ?>            
-        </div>
-        <div class="compile-manager-items element card padding">
-        
-        <?php 
-          if(isset($_POST['submitCompile'])){
-            require('AraTemplate.php');
-            echo 'done....';
-          }
-          ?>
-
-          <form action="index.php" method="POSt">
-            <label for="">compile it....</label>
-            <input type="submit" value="compile me" name="submitCompile">
-          </form>
-        </div>
-      </div>
     </div>
-  </body>
+    <div id="file-manager" class="tabcontent">
+        <h1>Files</h1>
+        <br>
+        <div class="card" style="width: 100%;">
+          <p class="files-process">Files</p>
+          <form action="AraNewDirectory.php" method="post">
+            <input type="text" name="newfoldername"><br>
+            <input type="submit" class="new-folder" value= "New Folder" name= "newfolder">
+          </form>
+          <hr>
+          <?php
+            $dir_files = ".";
+            // Sort in ascending orderead-liner - this is default
+            $a = scandir($dir_files);
+            $a = array_diff($a, array('.', '..'));
+            foreach($a as $a){
+              echo "<div class=".'card-reverse-1'.">".'<p class= "text">'.$a."</p>"."</div>";   
+            } 
+          ?>
+          </div>
+    </div>
+
+    <div id="store-manager" class="tabcontent">
+        <h1>Files</h1>
+        <br>
+        <div class="card" style="width: 100%;">
+          <h3>Store</h3>
+          <br>
+          <?php
+            $store = fopen ("http://www.code-student.ir/themes", "r");
+            $dir_files = ".";
+            // Sort in ascending orderead-liner - this is default
+            $a = scandir($dir_files);
+            $a = array_diff($a, array('.', '..'));
+            foreach($a as $a){
+              echo "<div class=".'card-reverse-1'.">".'<p class= "text">'.$a."</p>"."</div>";   
+            } 
+          ?>
+          </div>
+    </div>
+
+    <?php 
+        $dir_extention_files = "extention/extention-dir";
+
+        // Sort in ascending order - this is default
+        $x = scandir($dir_extention_files);
+        $x = array_diff($x, array('.', '..'));
+        foreach($x as $x){
+            echo '<div id="'.$x.'" class="tabcontent">';
+            echo '<h1>'.$x.'</h1><br>';
+            echo '<div class="card" style="width: 100%;">';
+            include ("extention/extention-dir/".$x."/".$x."_settings.php");
+            echo '</div>';
+            echo '</div>';
+        } 
+    ?>
+
+    <div id="settings" class="tabcontent">
+        <h1>Settings</h1>
+        <br>
+        <div class="card" style="width: 100%;">
+          <h3>Themes</h3>
+            <div class="theme theme0" style="background-color: #1f1f2e;"></div>
+            <div class="theme theme1" style="background-color: coral;"></div>
+            <div class="theme theme2" style="background-color: #6B5B95;"></div>
+            <div class="theme theme3" style="background-color: #E94B3C;"></div>
+            <div class="theme theme4" style="background-color: #9F9C99;"></div>
+            <div class="theme theme5" style="background-color: #45B8AC;"></div>
+        </div>
+    </div>
+</body>
 </html>
