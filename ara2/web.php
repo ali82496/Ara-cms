@@ -1,6 +1,5 @@
-
-
 <?php 
+    session_start();
     include('config/db_connect.php');
 
     //write query for all posts
@@ -27,18 +26,11 @@
     <link rel="stylesheet" type="text/css" href="humming-bird-r.css">
   </head>
   <body>
-	<!-- 1 -->
-    <div class="grid-header-nav-aside-section-aside-footer">
-      <header>
-        <!-- 2 -->
-        <h1>lorem ipsum</h1>
-      </header>
+    <div class="grid-nav-aside-section-footer">
       <nav class="sticky-up" style="background-color:#fff;">
           <h3 class="text">Humming bird</h3>
-          <!-- 3 -->
       </nav>
       <aside>
-        <!-- 4 -->
         <div class="card" style="width: 98%;">
           <p class="text">
           <ul class="aside-items">
@@ -50,7 +42,6 @@
         </div>
       </aside>
       <section>
-        <!-- 5 -->
         <?php foreach($posts as $post){ ?>
 
           <div class="card rounded-img" style="width: 98%;">
@@ -61,20 +52,7 @@
           </div>
         <?php } ?>
       </section>
-      <div class="aside2">
-        <!-- 6 -->
-        <div class="card" style="width: 98%;">
-          <p class="text">
-          <ul class="aside-items">
-            <?php foreach($posts as $post){ ?>
-              <a href="webdetail.php?id=<?php echo $post['id']?>" class="brand-text"><li><?php echo htmlspecialchars($post['title']) ?></li><br></a>
-            <?php } ?>
-          </ul>
-          </p>
-        </div>
-      </div>
       <footer style="background-color: #fff; height: 250px;">
-        <!-- 7 -->
         <p class="text">
           footer
         </p>

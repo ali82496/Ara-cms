@@ -4,7 +4,7 @@
 <?php 
 echo '<style>
         /* The progress container (grey background) */
-        .progress_container 
+        .progress-container 
         {
             width: 100%;
             height: '.$read_line_height.';
@@ -15,7 +15,7 @@ echo '<style>
         }
 
         /* The progress bar (scroll indicator) */
-        .progress_bar 
+        .progress-bar 
         {
             height: '.$read_line_height.';
             background: '.$read_line_color.';
@@ -32,11 +32,11 @@ echo '<style>
 
     function myFunction() {
     var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    var height = document.documentElement.scrollHeight _ document.documentElement.clientHeight;
+    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     var scrolled = (winScroll / height) * 100;
     document.getElementById("myBar").style.width = scrolled + "%";
     } 
 </script>
-<div class="progress_container">
-    <div class="progress_bar" id="myBar"></div>
+<div class="progress-container">
+    <div class="progress-bar" id="myBar"></div>
 </div>

@@ -1,5 +1,0 @@
-<?php
-
-    //section area
-
-?>

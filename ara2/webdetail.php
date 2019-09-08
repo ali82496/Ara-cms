@@ -1,25 +1,4 @@
-
-
 <?php
-
-//upper area
-
-$dir_extention_files = "extention";
-$zero = '0';
-
-// Sort in ascending order - this is default
-$x = scandir($dir_extention_files);
-$x = array_diff($x, array('.', '..'));
-foreach($x as $x){
-    include('extention/'.$x.'/'.$x.'_define_area.php');
-    if ($my_default_area_is == $zero){
-        include('extention/'.$x.'/'.$x.'.php');
-    }else{
-        echo 'The'.$x.'is not for this area';
-    }
-} 
-
-
 include('config/db_connect.php');
 
 //check Get request id parameter
@@ -49,6 +28,7 @@ include('config/db_connect.php');
     <link rel="stylesheet" type="text/css" href="humming-bird-r.css">
 </head>
 <body>
+        <?php require('extention/area1.php'); ?>
         <?php if($post): ?>
             <div class="form-center" style="width: 86%;">
             <img src="<?php echo 'media/'.$post['title'].'.jpg'; ?>" width="100%" style="padding-top: -70%; overflow: hidden;">

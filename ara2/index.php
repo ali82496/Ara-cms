@@ -285,7 +285,7 @@
             <!-- Tab links -->
             <div class="tab">
               <?php 
-                $dir_extention_files = "extention";
+                $dir_extention_files = "extention/extention-dir";
 
                 // Sort in ascending order - this is default
                 $x = scandir($dir_extention_files);
@@ -298,7 +298,7 @@
 
             <!-- Tab content -->
             <?php 
-                $dir_extention_files = "extention";
+                $dir_extention_files = "extention/extention-dir";
 
                 // Sort in ascending order - this is default
                 $x = scandir($dir_extention_files);
@@ -306,7 +306,7 @@
                 foreach($x as $x){
                   echo '<div id="'.$x.'" class="tabcontent">';
                   echo '<h3>'.$x.'</h3>';
-                  include ("extention/$x/$x-settings.php");
+                  include ("extention/extention-dir/".$x."/".$x."_settings.php");
                   echo '</div>';
                 } 
               ?>            
