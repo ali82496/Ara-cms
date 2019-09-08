@@ -1,5 +1,6 @@
-
 <?php
+
+include('config/db_connect.php');
 $target_dir = "media/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -38,6 +39,19 @@ if ($uploadOk == 0) {
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+        //upload file names and upload date to the database --start
+        $filename = $_FILES["fileToUpload"]["name"];
+        $current_date = date("Y-m-d");
+        $sql = "INSERT INTO ara_media (media_name, uploaded_at)
+        VALUES ('$filename', '$current_date')";
+        if (mysqli_query($conn, $sql)) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
+
+        mysqli_close($conn);
+        //upload file names and upload date to the database --end
     } else {
         echo "Sorry, there was an error uploading your file.";
     }

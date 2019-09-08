@@ -1,16 +1,16 @@
 <?php
     session_start();
     //body area
-    $dir_extention_files = "extention/extention-dir";
+    $dir_extention_files = "extention-dir";
 
     // Sort in ascending order - this is default
     $x = scandir($dir_extention_files);
     $x = array_diff($x, array('.', '..'));
     $one = '1';
     foreach($x as $x){
-        require('extention/extention-dir/'.$x.'/'.$x.'_define_area.php');
+        require('extention-dir/'.$x.'/'.$x.'_define_area.php');
         if ($_SESSION["$x"."_my_defualt"] == $one){
-            include('extention/extention-dir/'.$x.'/'.$x.'.php');
+            include('extention-dir/'.$x.'/'.$x.'.php');
         }
     }
 

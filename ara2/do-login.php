@@ -10,9 +10,6 @@
     if(mysqli_num_rows($check_admin) > 0){
         $_SESSION['loggedin'] = $email;
         header('location: dashboard_admin.php');
-    }elseif(mysqli_num_rows($check_user) > 0){
-        /*$_SESSION['loggedin'] = $email;
-        header('location: profile.php');*/
     }else{
         echo 'please register before loging in....';
     }
