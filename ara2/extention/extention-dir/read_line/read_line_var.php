@@ -1,1 +1,0 @@
-<?php  $read_line_height = "20px"; $read_line_color = "blue"; $read_line_background_color = "#f0f0f0";  ?>
