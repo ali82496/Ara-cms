@@ -1,17 +1,23 @@
 <?php 
-
+    
     include('../config/db_connect.php');
 
     //write query for all posts
     $sql = 'SELECT id, title, content, author, featured_image, created_at FROM posts ORDER BY created_at';
+    //write query for all addons
+    $sql_addons = 'SELECT id, addon_name, addon_area FROM ara_addons';
     
-    //make query and get resualt
+    //make query and get resualt -posts
     $result = mysqli_query($conn, $sql);
+    //make query and get resualt -addons
+    $result_addons = mysqli_query($conn, $sql_addons);
 
-    //fetch the resualting rows as an array
+    //fetch the resualting rows as an array -posts
+    $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    //fetch the resualting rows as an array -addons
     $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-    mysqli_free_result($result);
+    //mysqli_free_result($result);
 
     //close connection
     mysqli_close($conn);
@@ -25,20 +31,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ara</title>
-    <link rel="stylesheet" href="blog.css">
-    <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One&display=swap" rel="stylesheet"> 
-    <script src="https://kit.fontawesome.com/3a8222ebcb.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
+    <?php include("bootstrap/bootstrap.php") ?>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
     <style>
 
@@ -73,9 +66,10 @@
     </style>
 </head>
 
-<body class="bg-lighter">   
+<body class="bg-lighter">  
      <!-- Image and text -->
     <nav class="navbar navbar-primary bg-primary">
+    <?php include("../extention/extention-dir/read_line/read_line.php") ?> 
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="ara-alt.svg" width="30" height="30" class="d-inline-block align-top" alt="">
@@ -113,7 +107,7 @@
                     <ul>
                         <li class="text-right pr-2"> آزادی</li>
                         <li class="text-right pr-2"> زندگی من</li>
-                        <li class="text-right pr-2"> من امیدوارم</li>
+                        <li class="text-right pr-2"> aaمن امیدوارم</li>
                     </ul>
                 </div>
             </div>

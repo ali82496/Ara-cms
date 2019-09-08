@@ -1,7 +1,7 @@
 <?php
     session_start();
     //body area
-    $dir_extention_files = "extention-dir";
+    $dir_extention_files = "extention-dir/";
 
     // Sort in ascending order - this is default
     $x = scandir($dir_extention_files);
