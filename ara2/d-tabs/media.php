@@ -29,7 +29,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="AraMediaUpload.php" method="post" enctype="multipart/form-data">
+        <form action="../proccessors/AraMediaUpload.php" method="post" enctype="multipart/form-data">
           <div class="modal-body">
             <input type="file" name="fileToUpload" id="fileToUpload">
           </div>

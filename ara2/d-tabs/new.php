@@ -2,7 +2,7 @@
     include('config/db_connect.php');
 
     //write query for all posts
-    $sql_posts = 'SELECT * FROM posts';
+    $sql_posts = 'SELECT * FROM posts WHERE type="post"';
     
     //make query and get resualt -posts
     $result_posts = mysqli_query($conn, $sql_posts);
@@ -18,7 +18,7 @@
 <form action="d-tabs/new.php" method="POST">
   <div class="row">
     <div class="container-fluid">
-      <h1 class="float-left">New</h1>
+      <h1 class="float-left">Posts</h1>
       <button class="btn btn-outline-primary float-right" type="button" data-toggle="collapse" data-target="#collapse_new" aria-expanded="false" aria-controls="collapseExample">
         New
       </button>
@@ -39,6 +39,7 @@
                 <td><?php echo htmlspecialchars($post['title']); ?></td>
                 <td><?php echo htmlspecialchars($post['author']); ?></td>
                 <td><?php echo htmlspecialchars($post['created_at']); ?></td>
+                <td><a href="proccessors/delete_post.php?id=<?php echo $post['id'] ?>"><button class="btn btn-outline-danger" type="button">Delete</button></a></td>
               </tr>
             <?php } ?>
           </tbody>
