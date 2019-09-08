@@ -42,4 +42,17 @@
         } else {
             echo "Error creating table: " . mysqli_error($conn);
         }
+
+    // sql to create table
+    $sql_table_media = "CREATE TABLE IF NOT EXISTS ara_addons (
+        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        addon_name VARCHAR(30) NOT NULL,
+        addon_area INT(1) NOT NULL
+        )";
+        
+        if (mysqli_query($conn, $sql_table_media)) {
+            echo "Table addons created successfully";
+        } else {
+            echo "Error creating table: " . mysqli_error($conn);
+        }
 ?>

@@ -1,21 +1,20 @@
 <?php 
-    
     include('../config/db_connect.php');
 
     //write query for all posts
     $sql = 'SELECT id, title, content, author, featured_image, created_at FROM posts ORDER BY created_at';
     //write query for all addons
-    $sql_addons = 'SELECT id, addon_name, addon_area FROM ara_addons';
+    $sql_addons_a1 = 'SELECT id, addon_name, addon_area FROM ara_addons';
     
     //make query and get resualt -posts
     $result = mysqli_query($conn, $sql);
     //make query and get resualt -addons
-    $result_addons = mysqli_query($conn, $sql_addons);
+    $result_addons_a1 = mysqli_query($conn, $sql_addons_a1);
 
     //fetch the resualting rows as an array -posts
     $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
     //fetch the resualting rows as an array -addons
-    $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $addons_a1 = mysqli_fetch_all($result_addons_a1, MYSQLI_ASSOC);
 
     //mysqli_free_result($result);
 
@@ -69,10 +68,14 @@
 <body class="bg-lighter">  
      <!-- Image and text -->
     <nav class="navbar navbar-primary bg-primary">
-    <?php include("../extention/extention-dir/read_line/read_line.php") ?> 
+    <?php 
+        foreach($addons_a1 as $addon_a1){ 
+            include ("../extention/extention-dir/".$addon_a1['addon_name']."/".$addon_a1['addon_name'].".php"); 
+        }
+    ?>
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="ara-alt.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+                <img src="site-media/ara-alt.svg" width="30" height="30" class="d-inline-block align-top" alt="">
                 Ara
             </a>
         </div>
